@@ -3,20 +3,18 @@ package com.bridgelabz;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//  Purpose -  create an Address Book System
-
+/**
+ * Purpose - To edit the contacts an Address Book System
+ *
+ */
 public class AddressBookSystem {
+
 	ArrayList<Contacts> arrayDetails = new ArrayList<Contacts>();
-	Scanner sc = new Scanner(System.in);
+	static Scanner sc = new Scanner(System.in);
 
-	// This method is used to add details to address book
-	public static void main(String[] args) {
-		System.out.println("---Welcome to AddressBook System");
-		AddressBookSystem details = new AddressBookSystem();
-		details.addDetails();
-		details.display();
-	}
-
+	/**
+	 * This method is used to add details to address book
+	 */
 	public void addDetails() {
 		Contacts info = new Contacts();
 		System.out.println("Enter the first name");
@@ -36,92 +34,87 @@ public class AddressBookSystem {
 		System.out.println("Enter the phone number");
 		info.setPhoneNumber(sc.nextLong());
 		arrayDetails.add(info);
-		sc.close();
-	}
-
-	// Creating class Contact which content User detail
-
-	class Contacts {
-		private String firstName, lastName, address, city, state, email;
-		private int zip;
-		private long phoneNumber;
-
-		public String getFirstName() {
-			return firstName;
-		}
-
-		public void setFirstName(String firstName) {
-			this.firstName = firstName;
-		}
-
-		public String getLastName() {
-			return lastName;
-		}
-
-		public void setLastName(String lastName) {
-			this.lastName = lastName;
-		}
-
-		public String getAddress() {
-			return address;
-		}
-
-		public void setAddress(String address) {
-			this.address = address;
-		}
-
-		public String getCity() {
-			return city;
-		}
-
-		public void setCity(String city) {
-			this.city = city;
-		}
-
-		public String getState() {
-			return state;
-		}
-
-		public void setState(String state) {
-			this.state = state;
-		}
-
-		public String getEmail() {
-			return email;
-		}
-
-		public void setEmail(String email) {
-			this.email = email;
-		}
-
-		public int getZip() {
-			return zip;
-		}
-
-		public void setZip(int zip) {
-			this.zip = zip;
-		}
-
-		public long getPhoneNumber() {
-			return phoneNumber;
-		}
-
-		public void setPhoneNumber(long phoneNumber) {
-			this.phoneNumber = phoneNumber;
-		}
-
-		public String toString() {
-			return ("First name: " + firstName + "\n Last name: " + lastName + "\n Address: " + address + "\n city: "
-					+ city + "\n state: " + state + "\n email: " + email + "\n zip: " + zip + "\n phone number:"
-					+ phoneNumber + "");
-		}
-	}
-
-	/**
-	 * This method is used to display the added information
-	 */
-	public void display() {
 		System.out.println(arrayDetails);
 	}
 
+	/**
+	 * This method is used to edit the deatils in address book
+	 */
+	public void editDetails() {
+		System.out.println("Confirm your first name to edit details: ");
+		String confirmName = sc.next();
+
+		for (int i = 0; i < arrayDetails.size(); i++) {
+			if (arrayDetails.get(i).getFirstName().equals(confirmName)) {
+				System.out.println("Select form below to change: ");
+				System.out.println(
+						"\n1.First Name\n2.Last Name\n3.Address\n4.city\n5.State\n6.Zip\n7.Mobile number\n8.Email");
+				int edit = sc.nextInt();
+
+				switch (edit) {
+				case 1:
+					System.out.println("Enter first name");
+					arrayDetails.get(i).setFirstName(sc.next());
+					break;
+				case 2:
+					System.out.println("Enter Last name");
+					arrayDetails.get(i).setLastName(sc.next());
+					break;
+				case 3:
+					System.out.println("Enter Address");
+					arrayDetails.get(i).setAddress(sc.next());
+					break;
+				case 4:
+					System.out.println("Enter City");
+					arrayDetails.get(i).setCity(sc.next());
+					break;
+				case 5:
+					System.out.println("Enter State");
+					arrayDetails.get(i).setState(sc.next());
+					break;
+				case 6:
+					System.out.println("Enter Zip");
+					arrayDetails.get(i).setZip(sc.nextInt());
+					break;
+				case 7:
+					System.out.println("Enter Mobile number");
+					arrayDetails.get(i).setPhoneNumber(sc.nextLong());
+					break;
+				case 8:
+					System.out.println("Enter new E-mail");
+					arrayDetails.get(i).setEmail(sc.next());
+					break;
+				}
+				System.out.println("Edited list is: ");
+				System.out.println(arrayDetails);
+			} else
+				System.out.println("Enter a valid First name");
+		}
+
+	}
+
+	public static void main(String[] args) {
+		AddressBookSystem details = new AddressBookSystem();
+		details.addDetails();
+		int i = 0;
+		while (i == 0) {
+			System.out.println("Welcome to Address Book Program");
+			System.out.println("What do you want to do: ");
+			System.out.println("1.Add details.\n2.Edit details.");
+			int choose = sc.nextInt();
+			switch (choose) {
+			case 1:
+				details.addDetails();
+				break;
+			case 2:
+				details.editDetails();
+				break;
+			default:
+				i = 1;
+				System.out.println("Wrong option");
+				break;
+			}
+		}
+
+	}
 }
