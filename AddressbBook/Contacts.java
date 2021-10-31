@@ -1,6 +1,5 @@
 package com.bridgelabz;
 
-//Class for user contact
 class Contacts {
 	private String firstName, lastName, address, city, state, email;
 	private int zip;
@@ -10,7 +9,6 @@ class Contacts {
 		return firstName;
 	}
 
-//getters and setters 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
