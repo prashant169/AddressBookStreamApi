@@ -3,9 +3,10 @@ package com.bridgelabz;
 import java.util.*;
 
 /**
- * Purpose -program for search Person in a City or State across the
- *  multiple address Book
+ * Purpose - Ability to search Person in a City or State across 
+ * The multiple Address Book
  */
+
 public class AddressBookMain {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -16,7 +17,7 @@ public class AddressBookMain {
 			System.out.println("\nWelcome to Address Book System");
 			System.out.println(
 					"1. New Address Book \n2. Select Address Book \n3. Delete Address Book \n4. Search Contact Data \n5. Exit");
-			System.out.print("Select Option: ");
+			System.out.print("Enter Your choice: ");
 			int choice = sc.nextInt();
 			sc.nextLine();
 			switch (choice) {
@@ -36,13 +37,13 @@ public class AddressBookMain {
 				while (i.hasNext()) {
 					System.out.println(i.next());
 				}
-				System.out.println("Enter addressbook name you want to Open : ");
+				System.out.println("Enter Address Book name you want to Open : ");
 				String name = sc.nextLine();
 				System.out.println("Current Address Book is : " + name);
 				AddressBook.addressBookOptions(addressBookMap.get(name));// call method with passing address book name
 				break;
 			case 3:
-				System.out.println("Enter addressbook name to be delete: ");
+				System.out.println("Enter Address Book name to be delete: ");
 				name = sc.nextLine();
 				addressBookMap.remove(name);// delete hashmap using remove fun
 				break;
@@ -50,10 +51,14 @@ public class AddressBookMain {
 				System.out.println("Welcome to the search option:");
 				addressBook.searchByOptions();
 			case 5:
-				sc.close();					// for closing the programme
+				System.out.println("Welcome to view By Option:");
+				addressBook.viewByOption(addressBookMap);
+				break;
+			case 6:
+				sc.close();// for closing the programme
 				return;
 			default:
-				System.out.println("You Entered Invalid Choice....");
+				System.out.println("You Entered Invalid Choice....!");
 				break;
 			}
 		}
